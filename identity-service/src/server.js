@@ -6,8 +6,8 @@ const helmet = require("helmet");
 const cors = require("cors");
 const { RateLimiterRedis } = require("rate-limiter-flexible");
 const  Redis = require("ioredis");
-const {rateLimit} = require("express-rate-limit");
-const {RedisStore} = require("rate-limit-redis");
+const { rateLimit } = require("express-rate-limit");
+const { RedisStore } = require("rate-limit-redis");
 
 const app = express();
 
@@ -63,11 +63,11 @@ const sensitiveEndPointslimiter = rateLimit({
     })
 })
 
-// apply this sensitive endpoint limiters for out=r routes
-app.use("/api/v1/auth/register",sensitiveEndPointslimiter)
+// apply this sensitive endpoint limiters for outer routes
+app.use("/api/auth/register",sensitiveEndPointslimiter)
 
 const identityRoute = require("./routes/identity_service");
-app.use("/api/v1/auth/register",identityRoute)
+app.use("/api/auth",identityRoute)
 
 const errorHandler = require("./middleware/error_handler")
 app.use(errorHandler)
