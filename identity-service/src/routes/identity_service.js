@@ -2,9 +2,11 @@ const express = require("express");
 
 const router = express.Router();
 
-const { registerUser,loginUser } = require("../controllers/identity_controller");
+const { registerUser,loginUser,refreshTokenUser,logoutUser } = require("../controllers/identity_controller");
 
 router.post("/register",registerUser);
 router.post("/login", loginUser);
+router.post("/refresh-token", refreshTokenUser);
+router.post("/logout", logoutUser);
 
 module.exports = router;
